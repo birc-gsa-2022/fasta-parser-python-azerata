@@ -30,7 +30,7 @@ def get_sub(library: dict[str, str], f: TextIO) -> list[str]:
             coord_lib.append((coord[0], int(coord[1]), int(coord[2])))
 
     for coord in coord_lib:
-        out.append(library[coord[0]][coord[1]:coord[2]])
+        out.append(library[coord[0]][coord[1]-1:coord[2]-1])
     return out
 
 
