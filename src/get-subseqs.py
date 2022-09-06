@@ -27,10 +27,10 @@ def get_sub(library: dict[str, str], f: TextIO) -> list[str]:
     for line in tmp:
         if line:
             coord = line.split()
-            coord_lib.append((coord[0], int(coord[1]), int(coord[2])))
+            coord_lib.append((coord[0], int(coord[1])-1, int(coord[2])-1))
 
     for coord in coord_lib:
-        out.append(library[coord[0]][coord[1]-1:coord[2]-1])
+        out.append(library[coord[0]][coord[1]:coord[2]])
     return out
 
 
@@ -52,7 +52,8 @@ def main():
 
     library = make_library(args.fasta)
     out = get_sub(library, args.coords)
-    print('\n'.join(out))
+    if out:
+        print('\n'.join(out))
 
 
 if __name__ == '__main__':
